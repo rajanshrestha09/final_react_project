@@ -8,3 +8,6 @@ Step 5: configure store
 
 Step 6: Created pages
 Step 7: configure browser router
+    7.1: main.jsx => createBrowserRouter
+    7.2: main.jsx => RouterProvider
+    7.3: App.jsx => <Outlet /> 
