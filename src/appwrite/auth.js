@@ -35,6 +35,16 @@ export class authService {
         }
     }
 
+    // To get list of current users
+    async getCurrentUser() {
+        try {
+            return await this.account.get()
+
+        } catch (error) {
+            console.log("Appwrite CurrentUser:: ", error);
+        }
+    }
+
     // For Logout
     async logout() {
         try {
