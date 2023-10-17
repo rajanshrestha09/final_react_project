@@ -6,4 +6,5 @@ Step 5: configure store
     5.1: import react-redux react-toolkit
     5.2: create store/store.js store/authSlice
 
-
+Step 6: Created pages
+Step 7: configure browser router
