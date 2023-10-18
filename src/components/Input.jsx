@@ -5,10 +5,12 @@ const Input = React.forwardRef(function Input(
   ref
 ) {
   const id = useId();
+  // console.log('Id: ', id)
+  // console.log('Ref: ', ref)
   return (
     <div>
       {label && <label>{label}</label>} 
-      <input type={type} ref={ref} {...props} id={id} />
+      <input type={type} ref={ref} {...props} id={id} className={className}/>
     </div>
   );
 });
