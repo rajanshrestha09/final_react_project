@@ -12,9 +12,11 @@ export class AuthService {
     }
 
     // For Sign Up Account
-    async createAccount({ name, gmail, username, password }) {
+    async createAccount({ name, email,username, password }) {
+        console.log(username);
         try {
-            const userAccount = await this.account.create(ID.unique(), name, gmail, username, password);
+            const userAccount = await this.account.create(ID.unique(), name, email,username, password);
+            console.log(userAccount);
             if (userAccount) {
                 console.log('User created successfully ', userAccount);
                 return this.login({ username, password })
@@ -22,7 +24,7 @@ export class AuthService {
                 return userAccount
             }
         } catch (error) {
-            console.log('Error ', error)
+            console.log("Error createAccount: ", error);
         }
     }
 
@@ -35,6 +37,13 @@ export class AuthService {
         }
     }
 
+    async getCurrentUser(){
+        try {
+            return await this.account.get();
+        } catch (error) {
+            console.log('Error getCurrentUser: ', error)
+        }
+    }
     // For Logout
     async logout() {
         try {
