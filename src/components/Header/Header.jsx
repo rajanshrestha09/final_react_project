@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 function Header() {
   const navigate = useNavigate();
   const authStatus = useSelector((state) => state.auth.status);
-  console.log(authStatus);
+  // console.log(authStatus);
   const navItems = [
     {
       name: "Home",
@@ -15,12 +15,12 @@ function Header() {
     {
       name: "Login",
       slug: "/login",
-      active: true,
+      active: !authStatus,
     },
     {
       name: "Signup",
       slug: "/signup",
-      active: true,
+      active: !authStatus,
     },
   ];
 
