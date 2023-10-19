@@ -9,8 +9,8 @@ const Input = React.forwardRef(function Input(
   // console.log('Ref: ', ref)
   return (
     <div>
-      {label && <label>{label}</label>} 
-      <input type={type} ref={ref} {...props} id={id} className={className}/>
+      {label && <label htmlFor={id}>{label}</label>} 
+      <input type={type} ref={ref} {...props} id={id} className={`${className}`} />
     </div>
   );
 });
