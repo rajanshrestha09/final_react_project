@@ -16,8 +16,6 @@ function Signup() {
   const create = async (data) => {
     setError("");
     try {
-      // console.log(data)
-      user.push(data);
       const userData = await authService.createAccount(data);
       console.log(userData);
       if (userData) {
@@ -50,15 +48,7 @@ function Signup() {
           required: true,
         })}
       />
-      <Input
-        label="Username"
-        type="text"
-        placeholder="Enter your username"
-        className="m-2 border-2"
-        {...register("username", {
-          required: true,
-        })}
-      />
+
       <Input
         label="Password"
         type="password"
@@ -68,7 +58,7 @@ function Signup() {
           required: true,
         })}
       />
-      <Button>Signup</Button>
+      <Button type="submit">Signup</Button>
     </form>
   );
 }

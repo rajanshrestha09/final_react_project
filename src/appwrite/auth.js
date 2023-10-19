@@ -1,5 +1,5 @@
 import { Client, Account, ID } from "appwrite";
-import conf from "../conf/conf";
+import conf from "../conf/conf.js";
 
 export class AuthService {
     client = new Client();
@@ -12,14 +12,14 @@ export class AuthService {
     }
 
     // For Sign Up Account
-    async createAccount({ name, email,username, password }) {
-        console.log(username);
+    async createAccount({ email, password, name }) {
         try {
-            const userAccount = await this.account.create(ID.unique(), name, email,username, password);
+            // console.log({ name, email,username,  password })
+            const userAccount = await this.account.create(ID.unique(), email, password, name);
             console.log(userAccount);
             if (userAccount) {
-                console.log('User created successfully ', userAccount);
-                return this.login({ username, password })
+                // console.log('User created successfully ', userAccount);
+                return this.login({ email, password })
             } else {
                 return userAccount
             }
@@ -29,15 +29,15 @@ export class AuthService {
     }
 
     // For Login Account
-    async login({ username, password }) {
+    async login({ email, password }) {
         try {
-            await this.account.createEmailSession(username, password)
+            await this.account.createEmailSession(email, password)
         } catch (error) {
             console.log('Error ', error)
         }
     }
 
-    async getCurrentUser(){
+    async getCurrentUser() {
         try {
             return await this.account.get();
         } catch (error) {
