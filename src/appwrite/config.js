@@ -4,12 +4,14 @@ import conf from "../conf/conf";
 export class Service {
     client = new Client();
     databases;
+    bucket;
 
     constructor() {
         this.client
             .setEndpoint(conf.appwriteUrl)
             .setProject(conf.appwriteProjectId)
         this.databases = new Databases(this.client)
+        this.bucket = new Storage(this.client)
     }
 
     // Database functionality Start
@@ -91,7 +93,30 @@ export class Service {
 
      // Database functionality End
 
+    // Bucket funcationality Start
+    async uploadFile(){
+        try {
+            
+        } catch (error) {
+            console.log('Appwrite config :: uploadFile :: ', error);
+        }
+    }
 
+    async deleteFile(){
+        try {
+            
+        } catch (error) {
+            console.log('Appwrite config :: deleteFile :: ', error);
+        }
+    }
+
+    async getFilePreview(){
+        try {
+            
+        } catch (error) {
+            console.log('Appwrite config :: getFilePreview :: ', error);
+        }
+    }
 }
 
 const service = new Service();
