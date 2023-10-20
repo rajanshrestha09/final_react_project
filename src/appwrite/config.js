@@ -1,4 +1,4 @@
-import { Client, Databases, Query } from "appwrite";
+import { Client, Databases, Query, Storage } from "appwrite";
 import conf from "../conf/conf";
 
 export class Service {
@@ -94,25 +94,37 @@ export class Service {
      // Database functionality End
 
     // Bucket funcationality Start
-    async uploadFile(){
+    async uploadFile(file){
         try {
-            
+            return await this.bucket.createFile(
+                conf.appwriteBucketId,
+                ID.unique(),
+                file
+            )
         } catch (error) {
             console.log('Appwrite config :: uploadFile :: ', error);
+            return false
         }
     }
 
-    async deleteFile(){
+    async deleteFile(fileId){
         try {
-            
+            await this.bucket.deleteFile(
+                conf.appwriteBucketId,
+                fileId
+            )
         } catch (error) {
             console.log('Appwrite config :: deleteFile :: ', error);
         }
     }
 
-    async getFilePreview(){
+    async getFilePreview(fileId){
         try {
-            
+            return await this.bucket.getFilePreview(
+                conf.appwriteBucketId,
+                fileId,
+                
+            )
         } catch (error) {
             console.log('Appwrite config :: getFilePreview :: ', error);
         }
