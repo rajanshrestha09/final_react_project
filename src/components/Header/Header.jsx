@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import LogoutBtn from "./LogoutBtn";
 
 function Header() {
   const navigate = useNavigate();
@@ -33,6 +34,9 @@ function Header() {
               <button onClick={() => navigate(item.slug)}>{item.name}</button>
             </li>
           ) : null
+        )}
+        {authStatus && (
+          <li><LogoutBtn /></li>
         )}
       </ul>
     </div>
