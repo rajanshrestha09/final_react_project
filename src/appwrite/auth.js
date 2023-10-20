@@ -38,17 +38,20 @@ export class AuthService {
         }
     }
 
+    // To get list of current users
     async getCurrentUser() {
         try {
-            return await this.account.get();
+            return await this.account.get()
+
         } catch (error) {
-            console.log('Error getCurrentUser: ', error)
+            console.log("Appwrite CurrentUser:: ", error);
         }
     }
+
     // For Logout
     async logout() {
         try {
-            this.account.deleteSessions()
+           return this.account.deleteSessions()
         } catch (error) {
             console.log('Error ', error)
         }
