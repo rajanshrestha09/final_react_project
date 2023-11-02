@@ -1,16 +1,18 @@
-import React from 'react'
-import appwriteService from '../appwrite/config'
-import {Link} from 'react-router-dom'
+import React from "react";
+import appwriteService from "../appwrite/config";
+import { Link } from "react-router-dom";
+import {Container} from "./index";
 
-
-function PostCard({$id, title,featureImage}) {
+function PostCard({ $id, title, featureImage }) {
   return (
-    <Link to={`/post/${$id}`}>
+    <Container>
+      <Link to={`/post/${$id}`}>
         <div>
-            <img src={appwriteService.getFilePreview(featureImage)} alt={title} />
+          <img src={appwriteService.getFilePreview(featureImage)} alt={title} />
         </div>
-    </Link>
-  )
+      </Link>
+    </Container>
+  );
 }
 
-export default PostCard
+export default PostCard;

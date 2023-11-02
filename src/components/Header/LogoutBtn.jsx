@@ -11,7 +11,7 @@ function LogoutBtn() {
       dispatch(logout());
     });
   };
-  return <button onClick={logoutHandler}>Logout</button>;
+  return <button onClick={logoutHandler} className="bg-sky-700 text-white uppercase px-4 py-2 rounded-md">Logout</button>;
 }
 
 export default LogoutBtn;

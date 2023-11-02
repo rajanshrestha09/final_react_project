@@ -8,6 +8,7 @@ import Select from "./Select";
 import AuthLayout from "./AuthLayout"
 import PostForm from "./post-form/PostForm"
 import Header from "./Header/Header"
+import Container from "./container/Container";
 
 
 export{
@@ -20,5 +21,6 @@ export{
     Select,
     AuthLayout,
     PostForm,
-    Header
+    Header,
+    Container
 }

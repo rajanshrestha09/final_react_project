@@ -14,7 +14,11 @@ function Home() {
   }, []);
 
   if (posts.length === 0) {
-    return <h1>Login to read posts</h1>;
+    return (
+      <div className="bg-slate-400 w-screen h-screen text-center flex flex-col items-center justify-center">
+        <h1>Login to read posts</h1>
+      </div>
+    );
   }
   return (
     <div>

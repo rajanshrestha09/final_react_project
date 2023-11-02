@@ -1,6 +1,6 @@
 import React, { useCallback } from "react";
 import { useForm } from "react-hook-form";
-import { Button, Input, RTE, Select } from "../index";
+import { Button, Input, RTE, Select, Container } from "../index";
 import appwriteService from "../../appwrite/config";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -80,63 +80,65 @@ export default function PostForm({ post }) {
   }, [watch, slugTransform, setValue]);
 
   return (
-    <form onSubmit={handleSubmit(submit)} className="">
-      <div className="">
-        <Input
-          label="Title :"
-          placeholder="Title"
-          className=""
-          {...register("title", { required: true })}
-        />
-        <Input
-          label="Slug :"
-          placeholder="Slug"
-          className=""
-          {...register("slug", { required: true })}
-          onInput={(e) => {
-            setValue("slug", slugTransform(e.currentTarget.value), {
-              shouldValidate: true,
-            });
-          }}
-        />
-        <RTE
-          label="Content :"
-          name="content"
-          control={control}
-          defaultValue={getValues("content")}
-        />
-      </div>
-      <div className="">
-        <Input
-          label="Featured Image :"
-          type="file"
-          className=""
-          accept="image/png, image/jpg, image/jpeg, image/gif"
-          {...register("image", { required: !post })}
-        />
-        {post && (
-          <div className="">
-            <img
-              src={appwriteService.getFilePreview(post.featuredImage)}
-              alt={post.title}
-              className=""
-            />
-          </div>
-        )}
-        <Select
-          options={["active", "inactive"]}
-          label="Status"
-          className=""
-          {...register("status", { required: true })}
-        />
-        <Button
-          type="submit"
-          bgColor={post ? "bg-green-500" : undefined}
-          className=""
-        >
-          {post ? "Update" : "Submit"}
-        </Button>
-      </div>
-    </form>
+    <Container>
+      <form onSubmit={handleSubmit(submit)} className="flex justify-start items-start gap-x-2 ">
+        <div className="p-2 w-auto flex flex-col items-start bg-slate-600 rounded-lg">
+          <Input
+            label="Title:"
+            placeholder="Title"
+            className="m-2 border-2 h-8 p-2"
+            {...register("title", { required: true })}
+          />
+          <Input
+            label="Slug:"
+            placeholder="Slug"
+            className="m-2 border-2 h-8 p-2"
+            {...register("slug", { required: true })}
+            onInput={(e) => {
+              setValue("slug", slugTransform(e.currentTarget.value), {
+                shouldValidate: true,
+              });
+            }}
+          />
+          <RTE
+            label="Content :"
+            name="content"
+            control={control}
+            defaultValue={getValues("content")}
+          />
+        </div>
+        <div className="p-2 flex flex-col justify-start items-end bg-slate-600 rounded-lg">
+          <Input
+            label="Featured Image:"
+            type="file"
+            className="text-gray-300"
+            accept="image/png, image/jpg, image/jpeg, image/gif"
+            {...register("image", { required: !post })}
+          />
+          {post && (
+            <div className=" border">
+              <img
+                src={appwriteService.getFilePreview(post.featuredImage)}
+                alt={post.title}
+                className=""
+              />
+            </div>
+          )}
+          <Select
+            options={["active", "inactive"]}
+            label="Status:"
+            className="p-2"
+            {...register("status", { required: true })}
+          />
+          <Button
+            type="submit"
+            bgColor={post ? "bg-green-500" : undefined}
+            className="mx-auto"
+          >
+            {post ? "Update" : "Submit"}
+          </Button>
+        </div>
+      </form>
+    </Container>
   );
 }

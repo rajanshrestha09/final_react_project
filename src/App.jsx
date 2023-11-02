@@ -25,7 +25,6 @@ function App() {
   return !loading ? (
     <>
       <Header />
-      <hr />
       <Outlet />
     </>
   ): null

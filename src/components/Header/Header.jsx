@@ -36,17 +36,18 @@ function Header() {
   ];
 
   return (
-    <div>
-      <ul>
+    <div className="bg-blue-900">
+      <ul className="flex justify-end items-center h-14">
+        <li className="me-auto px-2 text-gray-400 text-3xl">LOGO</li>
         {navItems.map((item) =>
           item.active ? (
-            <li key={item.name}>
-              <button onClick={() => navigate(item.slug)}>{item.name}</button>
+            <li key={item.name} className="px-2 ">
+              <button onClick={() => navigate(item.slug)} className="text-white uppercase hover:bg-gray-400 hover:text-black p-2 rounded-md">{item.name}</button>
             </li>
           ) : null
         )}
         {authStatus && (
-          <li><LogoutBtn /></li>
+          <li className="ms-auto" ><LogoutBtn /></li>
         )}
       </ul>
     </div>
