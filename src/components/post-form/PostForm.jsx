@@ -6,24 +6,23 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 export default function PostForm({ post }) {
-  const { handleSubmit, reset, watch, control, register,setValue, getValues } = useForm({
-    defaultValues: {
-      title: post?.title || "",
-      slug: post?.$id || "",
-      content: post?.content || "",
-      status: post?.status || "active",
-    },
-  });
+  const { handleSubmit, reset, watch, control, register, setValue, getValues } =
+    useForm({
+      defaultValues: {
+        title: post?.title || "",
+        slug: post?.$id || "",
+        content: post?.content || "",
+        status: post?.status || "active",
+      },
+    });
 
   const navigate = useNavigate();
-  const userData = useSelector((state) => {
-    state.auth.userData;
-  });
+  const userData = useSelector((state) => state.auth.userData);
+  console.log(userData);
 
   const submit = async (data) => {
-    
     if (post) {
-      console.log('button clicked');
+      console.log("button clicked");
       const file = data.image[0]
         ? await appwriteService.uploadFile(data.image[0])
         : null;
@@ -42,7 +41,8 @@ export default function PostForm({ post }) {
       }
     } else {
       const file = await appwriteService.uploadFile(data.image[0]);
-      console.log('Else');
+      console.log(file);
+      console.log("Else");
 
       if (file) {
         const fileId = file.$id;

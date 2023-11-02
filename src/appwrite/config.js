@@ -1,4 +1,4 @@
-import { Client, Databases, Query, Storage } from "appwrite";
+import { Client,ID, Databases, Query, Storage } from "appwrite";
 import conf from "../conf/conf";
 
 export class Service {
@@ -17,18 +17,22 @@ export class Service {
     // Database functionality Start
     async createPost({ title, slug, content, featuredImage, status, userId }) {
         try {
+            console.log('Here');
             return await this.databases.createDocument(
                 conf.appwriteDatabaseId,
                 conf.appwriteCollectionId,
                 slug,
                 {
+                   
                     title,
                     content,
                     featuredImage,
                     status,
                     userId
                 }
+                
             )
+            
         } catch (error) {
             console.log('Appwrite config :: createPost :: ', error);
         }
