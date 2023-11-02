@@ -28,7 +28,8 @@ function Login() {
   }
 
   return (
-    <form onSubmit={handleSubmit(login)}>
+    <div className="">
+      <form onSubmit={handleSubmit(login)}>
     <Input
       label="Email"
       type="email"
@@ -50,6 +51,8 @@ function Login() {
     />
     <Button type="submit">Login</Button>
   </form>
+    </div>
+    
   );
 }
 

@@ -1,8 +1,8 @@
-import React,{useState, useEffect} from 'react'
-import appwriteService from '../appwrite/config'
+import React,{useEffect, useState} from 'react'
 import { PostCard } from '../components'
+import appwriteService from "../appwrite/config"
 
-function Home() {
+function AllPosts() {
   const [posts, setPosts] = useState([])
 
   useEffect(()=>{
@@ -12,12 +12,6 @@ function Home() {
       }
     })
   },[])
- 
-  
-  if(posts.length===0){
-    return (<h1>Login to read posts</h1>)
-    
-  }
   return (
     posts.map((post)=>{
       <div key={post.$id} className=''>
@@ -27,4 +21,4 @@ function Home() {
   )
 }
 
-export default Home
+export default AllPosts
