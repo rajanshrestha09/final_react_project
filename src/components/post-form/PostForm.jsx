@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 export default function PostForm({ post }) {
-  const { handleSubmit, reset, watch, control, register, setValue, getValues } =
+  const { handleSubmit, watch, control, register, setValue, getValues } =
     useForm({
       defaultValues: {
         title: post?.title || "",
@@ -43,13 +43,13 @@ export default function PostForm({ post }) {
       const file = await appwriteService.uploadFile(data.image[0]);
       console.log(file);
       console.log("Else");
-
+      console.log(userData);
       if (file) {
         const fileId = file.$id;
         data.featuredImage = fileId;
         const dbPost = await appwriteService.createPost({
           ...data,
-          userId: userData.$id,
+          userId: userData.$id
         });
 
         if (dbPost) {
@@ -69,6 +69,7 @@ export default function PostForm({ post }) {
 
     return "";
   }, []);
+
   React.useEffect(() => {
     const subscription = watch((value, { name }) => {
       if (name === "title") {

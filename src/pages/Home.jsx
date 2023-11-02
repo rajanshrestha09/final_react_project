@@ -4,6 +4,7 @@ import { PostCard } from "../components";
 
 function Home() {
   const [posts, setPosts] = useState([]);
+  console.log(posts);
 
   useEffect(() => {
     appwriteService.getPosts().then((posts) => {
@@ -21,12 +22,15 @@ function Home() {
     );
   }
   return (
-    <div>
-     {posts.map((post)=>(
-      <div key={post}>
-        <PostCard {...post}/>
+    <div className="h-screen w-full bg-slate-400">
+      {" "}
+      <div className="flex flex-wrap">
+        {posts.map((post) => (
+          <div key={post.$id} className="ms-2 mt-2">
+            <PostCard {...post} />
+          </div>
+        ))}
       </div>
-     ))}
     </div>
   );
 }

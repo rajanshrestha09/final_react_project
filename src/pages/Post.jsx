@@ -10,6 +10,7 @@ export default function Post() {
   const { slug } = useParams();
   const navigate = useNavigate();
 
+  // console.log(post.featuredImage);
   const userData = useSelector((state) => state.auth.userData);
 
   const isAuthor = post && userData ? post.userId == userData.$id : false;
@@ -32,28 +33,26 @@ export default function Post() {
     });
   };
   return post ? (
-    <div>
-      <img
-        src={appwriteService.getFilePreview(post.featuredImage)}
-        alt={post.title}
-        className=""
-      />
-      {isAuthor && (
-        <div>
-          <Link>
-            <Button>Edit</Button>
-          </Link>
-          <Button>Delete</Button>
-        </div>
-      )}
-      <div>
-        <h1>{post.title}</h1>
-        <div>
-            {parse(post.content)}
+    <div className=" bg-slate-400 w-screen h-screen">
+      <div className="flex flex-col flex-wrap p-2">
+        <img
+          src={appwriteService.getFilePreview(post.featuredImage)}
+          alt={post.title}
+          className="h-72 w-64 mb-2 rounded-md"
+        />
+        {isAuthor && (
+          <div className="mt-2ms-4">
+            <Link>
+              <Button>Edit</Button>
+            </Link>
+            <Button onClick={deletePost}>Delete</Button>
+          </div>
+        )}
+        <div className="ms-4">
+          <h1>Title: {post.title}</h1>
+          <p>Message: {parse(post.content)}</p>
         </div>
       </div>
-    
-
     </div>
   ) : null;
 }

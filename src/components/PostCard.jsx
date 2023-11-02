@@ -3,15 +3,17 @@ import appwriteService from "../appwrite/config";
 import { Link } from "react-router-dom";
 import {Container} from "./index";
 
-function PostCard({ $id, title, featureImage }) {
+function PostCard({ $id, title, featuredImage }) {
+  console.log(featuredImage);
   return (
-    <Container>
+    <div>
       <Link to={`/post/${$id}`}>
         <div>
-          <img src={appwriteService.getFilePreview(featureImage)} alt={title} />
+          <img src={appwriteService.getFilePreview(featuredImage)} alt={title} className="h-72 w-64 mb-2 rounded-md" />
+          <h1>{title}</h1>
         </div>
       </Link>
-    </Container>
+    </div>
   );
 }
 
