@@ -5,14 +5,13 @@ import appwriteService from "../appwrite/config";
 function AllPosts() {
   const [posts, setPosts] = useState([]);
   console.log(posts);
-
-  useEffect(() => {
-    appwriteService.getPosts().then((posts) => {
+    useEffect(()=>{}, [])
+    appwriteService.getPosts([]).then((posts) => {
       if (posts) {
         setPosts(posts.documents);
       }
     });
-  }, []);
+  
   return (
     <div className="h-screen w-full bg-slate-400">
       <div className="flex flex-wrap">
